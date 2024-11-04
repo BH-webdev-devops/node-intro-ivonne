@@ -31,19 +31,15 @@ export const carController = {
     createNewCar : (req : Request, res : Response)  : any => {
         try {
             const {brand, year, modele} = req.body
-            if(!brand || !year || !modele){
-                return res.json({message : `Please provide informations about the car`})
+            
+            const newCar = {
+                id : cars.length + 1,
+                brand,
+                year,
+                modele
             }
-            else {
-                const newCar = {
-                    id : cars.length + 1,
-                    brand,
-                    year,
-                    modele
-                }
-                cars.push(newCar)
-                res.json(cars)
-            }
+            cars.push(newCar)
+            res.json(cars)
         }
         catch(err){
             res.json(err)
